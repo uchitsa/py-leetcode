@@ -1,7 +1,10 @@
 def countSeniors(details: list[str]) -> int:
     cnt = 0
     for d in details:
-        if int(d[11])*10 + int(d[12]) > 60:
+        tens = int(d[11])*10
+        if tens<6:
+            continue
+        if tens + int(d[12]) > 60:
             cnt += 1
     return cnt
 
