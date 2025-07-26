@@ -1,14 +1,13 @@
-def maxSum(nums: List[int]) -> int:
+def maxSum(self, nums: List[int]) -> int:
+        maxi = max(nums)
+        if maxi < 0:
+            return maxi
         st = set(nums)
-        maxs = sum(st)
+        maxs = 0
 
-        neo = list(st)
-        while len(neo)>1:
-            neo.remove(min(neo))
-            if sum(neo) > maxs:
-                maxs = sum(neo)
-            else:
-                return maxs
+        for n in st:
+            if n > 0:
+                maxs += n
         return maxs
 
 print(maxSum([1,2,3,4,5]))  #should be 15
