@@ -8,3 +8,4 @@ class Solution:
             b = b << 1
             x = x >> 1
         return n
+        
