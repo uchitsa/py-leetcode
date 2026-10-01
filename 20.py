@@ -1,16 +1,19 @@
-def isValid(s: str) -> bool:
-    stack = []
-    config = {")": "(", "]": "[", "}": "{"}
-    for c in s:
-        if c == "(" or c == "[" or c == "{":
-            stack.append(c)
-            continue
-        if len(stack) == 0:
+class Solution:
+    def isValid(self, s: str) -> bool:
+        pairs = {"(":")", "{":"}", "[":"]"}
+        st = []
+        for c in s:
+            if c == "{" or c == "(" or c == "[":
+                st.append(c)
+                continue
+            if c == "}" or c == ")" or c == "]":
+                if st and c == pairs[st[-1]]:
+                    st.pop()
+                else:
+                    return False
+        if len(st) != 0:
             return False
-        if stack.pop() != config[c]:
-            return False
-    return len(stack) == 0
-
+        return True
 
 if __name__ == '__main__':
     print(isValid("()"))
