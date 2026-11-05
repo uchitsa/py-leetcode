@@ -1,12 +1,13 @@
 class Solution:
     def findTheDistanceValue(self, arr1: list[int], arr2: list[int], d: int) -> int:
+        arr2.sort()
         cnt = 0
-        for i in range(len(arr1)):
-            flag = False
-            for j in range(len(arr2)):
-                if abs(arr1[i] - arr2[j]) <= d:
-                    flag = True
-                    break
-            if not flag:
-                cnt += 1
+        for x in arr1:
+            i = bisect.bisect_left(arr2, x)
+            flag = True
+            if i < len(arr2) and abs(arr2[i] - x <= d):
+                flag = False
+            if i > 0 and abs(arr2[i - 1] - x) <= d:
+                flag = False
+            cnt += flag
         return cnt
